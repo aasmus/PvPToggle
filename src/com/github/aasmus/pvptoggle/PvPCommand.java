@@ -55,7 +55,7 @@ public class PvPCommand implements CommandExecutor {
 						    sender.sendMessage(ChatColor.RED + "Could not find a player by the name" + args[0] + ".");
 						} else {
 							current = PvPToggle.instance.players.get(other.getUniqueId().toString());
-							sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + ChatColor.GREEN + "'s PvP is " + current + ".");
+							sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + ChatColor.GREEN + "'s pvp is " + current + ".");
 						}
 					} else {
 						sender.sendMessage(ChatColor.RED + args[0] +" is an invalid parameter. {toggle|on|off|status}");

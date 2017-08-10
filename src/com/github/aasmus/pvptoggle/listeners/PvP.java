@@ -21,12 +21,12 @@ public class PvP implements Listener {
 				String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId().toString());
 				if(!damagerStatus.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
-					damager.sendMessage(ChatColor.RED + "You have PvP disabled!");
+					damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 					return;
 				}
 				if(!attackedStatus.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
-					damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has PvP disabled!");
+					damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 					return;
 				}
 			}
