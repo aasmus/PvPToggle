@@ -106,6 +106,6 @@ public class PvPCommand implements CommandExecutor {
 	
 	private void setPvPOff(Player p) {
 		PvPToggle.instance.players.replace(p.getUniqueId().toString(), "off");
-		p.sendMessage(ChatColor.GREEN + "You have Disabled pvp!");
+		p.sendMessage(ChatColor.GREEN + "You have disabled pvp!");
 	}
 }
