@@ -1,6 +1,7 @@
 package com.github.aasmus.pvptoggle;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -14,7 +15,7 @@ import com.github.aasmus.pvptoggle.listeners.PvP;
 public class PvPToggle extends JavaPlugin implements Listener {
 	public FileConfiguration config = getConfig();
 	public static PvPToggle instance;
-	public HashMap<String,String> players = new HashMap<String,String>();
+	public HashMap<UUID,String> players = new HashMap<UUID,String>();
 	
 	@Override
 	public void onEnable() {

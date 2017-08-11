@@ -27,7 +27,7 @@ public class PvPCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.GREEN + "Use /pvp {toggle|on|off} <player> to set another player's pvp state.");
 				}
 			} else if(args.length == 1) {
-				String current = PvPToggle.instance.players.get(p.getUniqueId().toString());
+				String current = PvPToggle.instance.players.get(p.getUniqueId());
 				if(args[0].equals("toggle")) {
 					if(current.equalsIgnoreCase("off")) {
 						setPvPOn(p);
@@ -54,7 +54,7 @@ public class PvPCommand implements CommandExecutor {
 						if(other == null) {
 						    sender.sendMessage(ChatColor.RED + "Could not find a player by the name" + args[0] + ".");
 						} else {
-							current = PvPToggle.instance.players.get(other.getUniqueId().toString());
+							current = PvPToggle.instance.players.get(other.getUniqueId());
 							sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + ChatColor.GREEN + "'s pvp is " + current + ".");
 						}
 					} else {
@@ -67,7 +67,7 @@ public class PvPCommand implements CommandExecutor {
 					if(other == null) {
 					    sender.sendMessage(ChatColor.RED + "Could not find a player by the name " + args[1]);
 					} else {
-						String current = PvPToggle.instance.players.get(other.getUniqueId().toString());
+						String current = PvPToggle.instance.players.get(other.getUniqueId());
 						if(args[0].equals("toggle")) {
 							if(current.equalsIgnoreCase("off")) {
 								setPvPOn(other);
@@ -87,7 +87,7 @@ public class PvPCommand implements CommandExecutor {
 								sender.sendMessage(ChatColor.GREEN + args[0] + " already has pvp off!");
 							}
 						}
-						current = PvPToggle.instance.players.get(other.getUniqueId().toString());
+						current = PvPToggle.instance.players.get(other.getUniqueId());
 						sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + "'s pvp state has been changed to " + current + ".");
 					}
 				} else {
@@ -100,12 +100,12 @@ public class PvPCommand implements CommandExecutor {
 	}
 
 	private void setPvPOn(Player p) {
-		PvPToggle.instance.players.replace(p.getUniqueId().toString(), "on");
+		PvPToggle.instance.players.replace(p.getUniqueId(), "on");
 		p.sendMessage(ChatColor.GREEN + "You have enabled pvp!");
 	}
 	
 	private void setPvPOff(Player p) {
-		PvPToggle.instance.players.replace(p.getUniqueId().toString(), "off");
+		PvPToggle.instance.players.replace(p.getUniqueId(), "off");
 		p.sendMessage(ChatColor.GREEN + "You have disabled pvp!");
 	}
 }
