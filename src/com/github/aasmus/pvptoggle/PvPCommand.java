@@ -24,14 +24,14 @@ public class PvPCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.GREEN + "Use /pvp <player> to see another player's pvp state.");
 				}
 				if(p.hasPermission("phanaticpvptoggle.others.set")) {
-					sender.sendMessage(ChatColor.GREEN + "Use /pvp <player> {toggle|on|off} to set another player's pvp state.");
+					sender.sendMessage(ChatColor.GREEN + "Use /pvp {toggle|on|off} <player> to set another player's pvp state.");
 				}
 			} else if(args.length == 1) {
 				String current = PvPToggle.instance.players.get(p.getUniqueId().toString());
 				if(args[0].equals("toggle")) {
 					if(current.equalsIgnoreCase("off")) {
 						setPvPOn(p);
-					} else if(current.equalsIgnoreCase("off")) {
+					} else if(current.equalsIgnoreCase("on")) {
 						setPvPOff(p);
 					}
 				} else if(args[0].equalsIgnoreCase("on")) {
