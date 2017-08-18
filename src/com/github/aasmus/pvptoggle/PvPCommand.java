@@ -52,7 +52,7 @@ public class PvPCommand implements CommandExecutor {
 					if(sender.hasPermission("phanaticpvptoggle.others")) {
 						Player other = Bukkit.getPlayerExact(args[0]);
 						if(other == null) {
-						    sender.sendMessage(ChatColor.RED + "Could not find a player by the name" + args[0] + ".");
+						    sender.sendMessage(ChatColor.RED + "Could not find a player by the name " + args[0] + ".");
 						} else {
 							current = PvPToggle.instance.players.get(other.getUniqueId());
 							sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + ChatColor.GREEN + "'s pvp is " + current + ".");

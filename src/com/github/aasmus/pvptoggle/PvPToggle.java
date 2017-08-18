@@ -19,8 +19,8 @@ public class PvPToggle extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
-		getServer().getPluginManager().registerEvents(this, this);
 		instance = this;
+		getServer().getPluginManager().registerEvents(this, this);
 		Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeave(), this);
 		Bukkit.getPluginManager().registerEvents(new PvP(), this);

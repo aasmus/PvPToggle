@@ -24,15 +24,15 @@ public class PvP implements Listener {
 		if(event.getDamager() instanceof Player) {
 			if(event.getEntity() instanceof Player) {
 				Player damager = (Player) event.getDamager();
-				String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+				String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
 				Player attacked = (Player) event.getEntity();
-				String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-				if(!damagerStatus.equalsIgnoreCase("on")) {
+				String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+				if(!damagerState.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
 					damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 					return;
 				}
-				if(!attackedStatus.equalsIgnoreCase("on")) {
+				if(!attackedState.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
 					damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 					return;
@@ -43,15 +43,15 @@ public class PvP implements Listener {
 			if(arrow.getShooter() instanceof Player) {
 				if(event.getEntity() instanceof Player) {
 					Player damager = (Player) arrow.getShooter();
-					String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+					String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
 					Player attacked = (Player) event.getEntity();
-					String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-					if(!damagerStatus.equalsIgnoreCase("on")) {
+					String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+					if(!damagerState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 						return;
 					}
-					if(!attackedStatus.equalsIgnoreCase("on")) {
+					if(!attackedState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 						return;
@@ -63,15 +63,15 @@ public class PvP implements Listener {
 			if(potion.getShooter() instanceof Player) {
 				if(event.getEntity() instanceof Player) {
 					Player damager = (Player) potion.getShooter();
-					String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+					String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
 					Player attacked = (Player) event.getEntity();
-					String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-					if(!damagerStatus.equalsIgnoreCase("on")) {
+					String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+					if(!damagerState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 						return;
 					}
-					if(!attackedStatus.equalsIgnoreCase("on")) {
+					if(!attackedState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 						return;
@@ -87,15 +87,15 @@ public class PvP implements Listener {
 			   for(LivingEntity entity : event.getAffectedEntities()) {
 			        if(entity instanceof Player) {
 			    		Player damager = (Player) event.getPotion().getShooter();
-			    		String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+			    		String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
 			        	Player attacked = (Player) entity;
-			    		String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-			    		if(!damagerStatus.equalsIgnoreCase("on")) {
+			    		String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+			    		if(!damagerState.equalsIgnoreCase("on")) {
 			    			event.setCancelled(true);
 			    			damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 			    			return;
 			    		}
-			    		if(!attackedStatus.equalsIgnoreCase("on")) {
+			    		if(!attackedState.equalsIgnoreCase("on")) {
 			    			event.setCancelled(true);
 			    			damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 			    			return;
@@ -110,15 +110,15 @@ public class PvP implements Listener {
 		if(event.getEntity().getShooter() instanceof Player) {
 			if(event.getHitEntity() instanceof Player) {
 	    		Player damager = (Player) event.getEntity().getShooter();
-	    		String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+	    		String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
 	        	Player attacked = (Player) event.getHitEntity();
-	    		String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-	    		if(!damagerStatus.equalsIgnoreCase("on")) {
+	    		String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+	    		if(!damagerState.equalsIgnoreCase("on")) {
 	    			event.setCancelled(true);
 	    			damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 	    			return;
 	    		}
-	    		if(!attackedStatus.equalsIgnoreCase("on")) {
+	    		if(!attackedState.equalsIgnoreCase("on")) {
 	    			event.setCancelled(true);
 	    			damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 	    			return;
@@ -135,13 +135,12 @@ public class PvP implements Listener {
         		LivingEntity entity = it.next();
         		if(entity instanceof Player) {
     	    		Player damager = (Player) event.getEntity().getSource();
-    	    		String damagerStatus = PvPToggle.instance.players.get(damager.getUniqueId());
+    	    		String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
     	        	Player attacked = (Player) entity;
-    	    		String attackedStatus = PvPToggle.instance.players.get(attacked.getUniqueId());
-    	    		if(!damagerStatus.equalsIgnoreCase("on")) {
+    	    		String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+    	    		if(!attackedState.equalsIgnoreCase("on")) {
     	    			it.remove();
-    	    		}
-    	    		if(!attackedStatus.equalsIgnoreCase("on")) {
+    	    		} else if(!damagerState.equalsIgnoreCase("on")) {
     	    			it.remove();
     	    		}
         		}
