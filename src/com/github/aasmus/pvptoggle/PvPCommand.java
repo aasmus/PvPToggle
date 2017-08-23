@@ -98,11 +98,11 @@ public class PvPCommand implements CommandExecutor {
 
 	private void setPvPOn(Player p) {
 		PvPToggle.instance.players.replace(p.getUniqueId(), "on");
-		p.sendMessage(ChatColor.GREEN + "You have enabled pvp!");
+		p.sendMessage(ChatColor.GREEN + "Your pvp has been enabled!");
 	}
 	
 	private void setPvPOff(Player p) {
 		PvPToggle.instance.players.replace(p.getUniqueId(), "off");
-		p.sendMessage(ChatColor.GREEN + "You have disabled pvp!");
+		p.sendMessage(ChatColor.GREEN + "Your pvp has been disabled!");
 	}
 }
