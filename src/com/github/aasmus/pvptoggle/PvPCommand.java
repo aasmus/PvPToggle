@@ -12,6 +12,37 @@ public class PvPCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if(!(sender instanceof Player)) {
+			Player other = Bukkit.getPlayerExact(args[1]);
+			if(other == null) {
+			    sender.sendMessage(ChatColor.RED + "Could not find a player by the name " + args[1]);
+			} else {
+				String current = PvPToggle.instance.players.get(other.getUniqueId());
+				if(args[0].equals("toggle")) {
+					if(current.equalsIgnoreCase("off")) {
+						setPvPOn(other);
+					} else if(current.equalsIgnoreCase("off")) {
+						setPvPOff(other);
+					}
+				} else if(args[0].equalsIgnoreCase("on")) {
+					if(!current.equalsIgnoreCase("on")) {
+						setPvPOn(other);
+					} else {
+						sender.sendMessage(ChatColor.GREEN + args[0] + " already has pvp on!");
+					}
+				} else if(args[0].equalsIgnoreCase("off")) {
+					if(!current.equalsIgnoreCase("off")) {
+						setPvPOff(other);
+					} else {
+						sender.sendMessage(ChatColor.GREEN + args[0] + " already has pvp off!");
+					}
+				}
+				current = PvPToggle.instance.players.get(other.getUniqueId());
+				sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + "'s pvp state has been changed to " + current + ".");
+			}
+			return true;
+		}
+		
 		if(cmd.getName().equalsIgnoreCase("pvp")) {
 			Player p = (Player) sender;
 			if(args.length == 0) {
