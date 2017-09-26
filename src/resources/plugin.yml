@@ -1,21 +1,21 @@
 main: com.github.aasmus.pvptoggle.PvPToggle
 name: PhanaticPvPToggle
 version: 1.3.1
-author: legit_craft
+author: aasmus
 description: Plugin that allows players to toggle PvP state
 commands:
   pvp:
     description: used to change PvP state.
     usage: /pvp
-    permission: phanaticpvptoggle.allow
+    permission: pvptoggle.allow
     permission-message: You don't have the phanaticpvptoggle.allow permission node.
 permissions:
-  phanaticpvptoggle.allow:
+  pvptoggle.allow:
     description: allows player to change pvp state
     default: true
-  phanaticpvptoggle.others:
+  pvptoggle.others:
     description: allows player to see other player's pvp state
     default: op
-  phanaticpvptoggle.others.set:
+  pvptoggle.others.set:
     description: allows player to set other players pvp state
     default: op

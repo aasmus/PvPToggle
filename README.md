@@ -9,8 +9,8 @@ Plugin to toggle the ability to pvp
 /pvp <player> {toggle|on|off} - used to set the pvp state of another player
 
 ### Permission Nodes
-phanaticpvptoggle.allow - grants access to /pvp {toggle|on|off|status} command
+pvptoggle.allow - grants access to /pvp {toggle|on|off|status} command
 
-phanaticpvptoggle.others - grants access to /pvp (player) command
+pvptoggle.others - grants access to /pvp (player) command
 
-phanaticpvptoggle.others.set - grants access to /pvp (player) {toggle|on|off} command
+pvptoggle.others.set - grants access to /pvp (player) {toggle|on|off} command
