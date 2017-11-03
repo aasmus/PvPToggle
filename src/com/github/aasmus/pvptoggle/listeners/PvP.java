@@ -29,12 +29,9 @@ public class PvP implements Listener {
 			if (!damagerState.equalsIgnoreCase("on")) {
 				event.setCancelled(true);
 				damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
-				return;
-			}
-			if (!attackedState.equalsIgnoreCase("on")) {
+			}else if (!attackedState.equalsIgnoreCase("on")) {
 				event.setCancelled(true);
 				damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
-				return;
 			}
 		} else if (event.getDamager() instanceof Projectile) {
 			Projectile arrow = (Projectile) event.getDamager();
@@ -47,12 +44,9 @@ public class PvP implements Listener {
 					if(!damagerState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
-						return;
-					}
-					if(!attackedState.equalsIgnoreCase("on")) {
+					}else if(!attackedState.equalsIgnoreCase("on")) {
 						event.setCancelled(true);
 						damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
-						return;
 					}
 				}
 			}
@@ -66,12 +60,9 @@ public class PvP implements Listener {
 				if (!damagerState.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
 					damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
-					return;
-				}
-				if (!attackedState.equalsIgnoreCase("on")) {
+				}else if (!attackedState.equalsIgnoreCase("on")) {
 					event.setCancelled(true);
 					damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
-					return;
 				}
 			}
 		}
@@ -89,12 +80,9 @@ public class PvP implements Listener {
 			    		if(!damagerState.equalsIgnoreCase("on")) {
 			    			event.setCancelled(true);
 			    			damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
-			    			return;
-			    		}
-			    		if(!attackedState.equalsIgnoreCase("on")) {
+			    		}else if(!attackedState.equalsIgnoreCase("on")) {
 			    			event.setCancelled(true);
 			    			damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
-			    			return;
 			    		}
 			        }
 			   }
@@ -112,12 +100,9 @@ public class PvP implements Listener {
 	    		if(!damagerState.equalsIgnoreCase("on")) {
 	    			event.setCancelled(true);
 	    			damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
-	    			return;
-	    		}
-	    		if(!attackedState.equalsIgnoreCase("on")) {
+	    		} else if(!attackedState.equalsIgnoreCase("on")) {
 	    			event.setCancelled(true);
 	    			damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
-	    			return;
 	    		}
 			}
 		}
@@ -134,11 +119,10 @@ public class PvP implements Listener {
     	    		String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
     	        	Player attacked = (Player) entity;
     	    		String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
-    	    		if(!attackedState.equalsIgnoreCase("on")) {
+    	    		if(!attackedState.equalsIgnoreCase("on"))
     	    			it.remove();
-    	    		} else if(!damagerState.equalsIgnoreCase("on")) {
+    	    		else if(!damagerState.equalsIgnoreCase("on"))
     	    			it.remove();
-    	    		}
         		}
         	}
     	}
