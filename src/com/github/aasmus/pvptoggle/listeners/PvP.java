@@ -22,19 +22,22 @@ import com.github.aasmus.pvptoggle.PvPToggle;
 public class PvP implements Listener {
 
 	@EventHandler
+	//fired when an entity is hit
 	public void onHit(EntityDamageByEntityEvent event) {
+		//check if attack was a player
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-			Player damager = (Player) event.getDamager();
+			Player damager = (Player) event.getDamager(); //player who hit
 			String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());
-			Player attacked = (Player) event.getEntity();
+			Player attacked = (Player) event.getEntity(); //player who was hit
 			String attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
-			if (!damagerState.equalsIgnoreCase("on")) {
+			if (!damagerState.equalsIgnoreCase("on")) { 
 				event.setCancelled(true);
 				damager.sendMessage(ChatColor.RED + "You have pvp disabled!");
 			}else if (!attackedState.equalsIgnoreCase("on")) {
 				event.setCancelled(true);
 				damager.sendMessage(ChatColor.RED + attacked.getDisplayName() + " has pvp disabled!");
 			}
+		//checks if damage was done by a projectile
 		} else if (event.getDamager() instanceof Projectile) {
 			Projectile arrow = (Projectile) event.getDamager();
 			if(arrow.getShooter() instanceof Player) {
@@ -52,6 +55,7 @@ public class PvP implements Listener {
 					}
 				}
 			}
+		//checks if damage was done by a potion
 		} else if(event.getDamager() instanceof ThrownPotion) {
 			ThrownPotion potion = (ThrownPotion) event.getDamager();
 			if (potion.getShooter() instanceof Player && event.getEntity() instanceof Player) {
@@ -71,6 +75,7 @@ public class PvP implements Listener {
 	}
 	
 	@EventHandler
+	//fired when a splash potion is thrown
 	public void onPotionSplash(PotionSplashEvent event) {
 		if(event.getPotion().getShooter() instanceof Player) {
 			   for(LivingEntity entity : event.getAffectedEntities()) {
@@ -92,6 +97,7 @@ public class PvP implements Listener {
 	}
 	
 	@EventHandler
+	//fired when a lingering potion is thrown
 	public void onLingeringPotionSplash(LingeringPotionSplashEvent event) {
 		if(event.getEntity().getShooter() instanceof Player) {
 			if(event.getHitEntity() instanceof Player) {
@@ -111,6 +117,7 @@ public class PvP implements Listener {
 	}
 	
     @EventHandler
+    //fired when lingering potion cloud is active
     public void onCloudEffects(AreaEffectCloudApplyEvent event) {
     	if(event.getEntity().getSource() instanceof Player) {
     		Iterator<LivingEntity> it = event.getAffectedEntities().iterator();
@@ -131,6 +138,7 @@ public class PvP implements Listener {
     }
     
     @EventHandler
+    //fired when a player uses a fishing rod
     public void onPlayerFishing (final PlayerFishEvent event) {
         final Player damager = event.getPlayer();
         String damagerState = PvPToggle.instance.players.get(damager.getUniqueId());

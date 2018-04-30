@@ -12,7 +12,7 @@ public class PlayerJoin implements Listener {
 	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
     	Player p = event.getPlayer();
-    	PvPToggle.instance.players.put(p.getUniqueId(), "off");
+    	PvPToggle.instance.players.put(p.getUniqueId(), "off"); //add player to players hash map and set their pvp state to off
 	}
 
 }

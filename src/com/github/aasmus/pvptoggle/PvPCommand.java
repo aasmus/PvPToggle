@@ -14,11 +14,11 @@ public class PvPCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(sender instanceof ConsoleCommandSender) {
+		if(sender instanceof ConsoleCommandSender) { //check if command sender is console
 			Player other = Bukkit.getPlayerExact(args[1]);
-			if(other == null) {
+			if(other == null) { //make sure the player is online
 			    sender.sendMessage(ChatColor.RED + "Could not find a player by the name " + args[1]);
-			} else {
+			} else { //set pvp state
 				String current = PvPToggle.instance.players.get(other.getUniqueId());
 				if(args[0].equals("toggle")) {
 					if(current.equalsIgnoreCase("off"))
@@ -39,7 +39,7 @@ public class PvPCommand implements CommandExecutor {
 				current = PvPToggle.instance.players.get(other.getUniqueId());
 				sender.sendMessage(ChatColor.GREEN + other.getDisplayName() + "'s pvp state has been changed to " + current + ".");
 			}
-		} else if(sender instanceof Player) {
+		} else if(sender instanceof Player) { //check if command sender is player
 			if(cmd.getName().equalsIgnoreCase("pvp")) {
 				Player p = (Player) sender;
 				if(args.length == 0) {
