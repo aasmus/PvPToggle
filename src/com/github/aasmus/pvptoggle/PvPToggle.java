@@ -20,6 +20,10 @@ public class PvPToggle extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		instance = this;
+		//save config
+		if(config != null) {
+			this.saveDefaultConfig();	
+		}
 		//register events
 		getServer().getPluginManager().registerEvents(this, this);
 		Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);

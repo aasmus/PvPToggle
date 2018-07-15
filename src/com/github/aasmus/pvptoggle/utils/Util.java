@@ -1,16 +1,18 @@
-package com.github.aasmus.pvptoggle;
+package com.github.aasmus.pvptoggle.utils;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import com.github.aasmus.pvptoggle.PvPToggle;
+
 public class Util {
+	
 	public static void setPvPOn(Player p) {
 		PvPToggle.instance.players.replace(p.getUniqueId(), "on");
-		p.sendMessage(ChatColor.GREEN + "Your pvp has been enabled!");
+		Chat.send(p, "PVP_STATE_ENABLED");
 	}
 	
 	public static void setPvPOff(Player p) {
 		PvPToggle.instance.players.replace(p.getUniqueId(), "off");
-		p.sendMessage(ChatColor.GREEN + "Your pvp has been disabled!");
+		Chat.send(p, "PVP_STATE_DISABLED");
 	}
 }
