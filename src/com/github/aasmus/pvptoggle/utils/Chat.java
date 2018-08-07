@@ -21,11 +21,15 @@ public class Chat {
 		player.sendMessage(ChatColor.translateAlternateColorCodes('&', output));
 	}
 	
-	// sends message with a parameter to player
-	public static void send(Player player, String message, String parameter, String pvpState) {
+	// sends message with a parameter to player and pvp state
+	public static void send(Player player, String message, String parameter, Boolean pvpState) {
 		String str = PvPToggle.instance.getConfig().getString("MESSAGES." + message);
 		String output = str.replaceAll("<parameter>", parameter);
-		output = output.replaceAll("<pvpstate>", pvpState);
+		if(pvpState == true) {
+			output = output.replaceAll("<pvpstate>", "off");
+		} else {
+			output = output.replaceAll("<pvpstate>", "on");
+		}
 		player.sendMessage(ChatColor.translateAlternateColorCodes('&', output));
 	}
 	
@@ -41,11 +45,15 @@ public class Chat {
 		console.sendMessage(ChatColor.translateAlternateColorCodes('&', output));
 	}
 	
-	// sends message with a parameter to console
-	public static void send(ConsoleCommandSender console, String message, String parameter, String pvpState) {
+	// sends message with a parameter and pvp state to console
+	public static void send(ConsoleCommandSender console, String message, String parameter, Boolean pvpState) {
 		String str = PvPToggle.instance.getConfig().getString("MESSAGES." + message);
 		String output = str.replaceAll("<parameter>", parameter);
-		output = output.replaceAll("<pvpstate>", pvpState);
+		if(pvpState == true) {
+			output = output.replaceAll("<pvpstate>", "off");
+		} else {
+			output = output.replaceAll("<pvpstate>", "on");
+		}
 		console.sendMessage(ChatColor.translateAlternateColorCodes('&', output));
 	}
 

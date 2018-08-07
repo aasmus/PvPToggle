@@ -1,6 +1,6 @@
 main: com.github.aasmus.pvptoggle.PvPToggle
 name: PvPToggle
-version: 1.3.3
+version: 1.5
 author: aasmus
 description: Plugin that allows players to toggle PvP state
 commands:
@@ -8,7 +8,7 @@ commands:
     description: used to change PvP state.
     usage: /pvp
     permission: pvptoggle.allow
-    permission-message: You don't have the phanaticpvptoggle.allow permission node.
+    permission-message: You don't have the pvptoggle.allow permission node.
 permissions:
   pvptoggle.allow:
     description: allows player to change pvp state
@@ -18,4 +18,7 @@ permissions:
     default: op
   pvptoggle.others.set:
     description: allows player to set other players pvp state
+    default: op
+  pvptoggle.bypass:
+    description: allows player to bypass cooldown
     default: op

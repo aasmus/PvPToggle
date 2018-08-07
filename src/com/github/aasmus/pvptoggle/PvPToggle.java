@@ -1,5 +1,6 @@
 package com.github.aasmus.pvptoggle;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -13,9 +14,11 @@ import com.github.aasmus.pvptoggle.listeners.PlayerLeave;
 import com.github.aasmus.pvptoggle.listeners.PvP;
 
 public class PvPToggle extends JavaPlugin implements Listener {
+	
 	public FileConfiguration config = getConfig();
 	public static PvPToggle instance;
-	public HashMap<UUID,String> players = new HashMap<UUID,String>();
+	public static HashMap<UUID,Boolean> players = new HashMap<UUID,Boolean>();
+	public static HashMap<UUID,Date> cooldowns = new HashMap<UUID,Date>();
 	
 	@Override
 	public void onEnable() {
