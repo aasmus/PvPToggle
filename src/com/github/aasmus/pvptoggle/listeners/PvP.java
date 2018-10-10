@@ -48,6 +48,9 @@ public class PvP implements Listener {
 					Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 					Player attacked = (Player) event.getEntity();
 					Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
+					if(damager == attacked) {
+						return;
+					}
 					if(damagerState == true) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED");
@@ -65,6 +68,9 @@ public class PvP implements Listener {
 				Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 				Player attacked = (Player) event.getEntity();
 				Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
+				if(damager == attacked) {
+					return;
+				}
 				if (damagerState == true) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED");
@@ -105,13 +111,15 @@ public class PvP implements Listener {
 			    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 			        	Player attacked = (Player) entity;
 			    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-			    		if(damagerState == true) {
-			    			event.setCancelled(true);
-			    			Chat.send(damager, "PVP_DISABLED");
-			    		}else if(attackedState != null && attackedState == true) {
-			    			event.setCancelled(true);
-			    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
-			    		}
+						if(damager != attacked) {
+				    		if(damagerState == true) {
+				    			event.setCancelled(true);
+				    			Chat.send(damager, "PVP_DISABLED");
+				    		}else if(attackedState != null && attackedState == true) {
+				    			event.setCancelled(true);
+				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+				    		}
+						}
 			        }
 			   }
 		}
@@ -160,7 +168,7 @@ public class PvP implements Listener {
     
     @EventHandler
     //fired when a player uses a fishing rod
-    public void onPlayerFishing (final PlayerFishEvent event) {
+    public void onPlayerFishing (PlayerFishEvent event) {
         if (event.getCaught() instanceof Player) {
             final Player damager = event.getPlayer();
             Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
