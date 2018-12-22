@@ -1,7 +1,7 @@
 SETTINGS:
 ##How often can a player use /pvp on/off/toggle in seconds
   COOLDOWN: 0
-  PVP_DEFAULT_STATE: false # PVP IS ON OFF BY DEFAULT
+  PVP_DEFAULT_STATE: true # PVP IS ON OFF BY DEFAULT
 ##<pvpstate> goes in place of a player's current pvp state
 ##<parameter> goes in place of a player's name or other parameter
 MESSAGES:
