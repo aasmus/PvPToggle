@@ -1,24 +1,23 @@
 package com.github.aasmus.pvptoggle;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
-
+import com.github.aasmus.pvptoggle.listeners.PlayerJoin;
+import com.github.aasmus.pvptoggle.listeners.PlayerLeave;
+import com.github.aasmus.pvptoggle.listeners.PvP;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.aasmus.pvptoggle.listeners.PlayerJoin;
-import com.github.aasmus.pvptoggle.listeners.PlayerLeave;
-import com.github.aasmus.pvptoggle.listeners.PvP;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class PvPToggle extends JavaPlugin implements Listener {
 	
-	public FileConfiguration config = getConfig();
+	private FileConfiguration config = getConfig();
 	public static PvPToggle instance;
-	public static HashMap<UUID,Boolean> players = new HashMap<UUID,Boolean>();
-	public static HashMap<UUID,Date> cooldowns = new HashMap<UUID,Date>();
+	public static HashMap<UUID,Boolean> players = new HashMap<>();
+	public static HashMap<UUID,Date> cooldowns = new HashMap<>();
 	
 	@Override
 	public void onEnable() {
