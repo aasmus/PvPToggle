@@ -32,10 +32,10 @@ public class PvP implements Listener {
 			Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 			Player attacked = (Player) event.getEntity(); //player who was hit
 			Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-			if (damagerState == true) { 
+			if (damagerState) { 
 				event.setCancelled(true);
 				Chat.send(damager, "PVP_DISABLED");
-			} else if (attackedState != null && attackedState == true) {
+			} else if (attackedState != null && attackedState) {
 				event.setCancelled(true);
 				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 			}
@@ -51,10 +51,10 @@ public class PvP implements Listener {
 					if(damager == attacked) {
 						return;
 					}
-					if(damagerState == true) {
+					if(damagerState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED");
-					}else if(attackedState != null && attackedState == true) {
+					}else if(attackedState != null && attackedState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 					}
@@ -71,10 +71,10 @@ public class PvP implements Listener {
 				if(damager == attacked) {
 					return;
 				}
-				if (damagerState == true) {
+				if (damagerState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED");
-				}else if (attackedState != null && attackedState == true) {
+				}else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 				}
@@ -92,9 +92,9 @@ public class PvP implements Listener {
 				Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 				Player attacked = (Player) event.getEntity();
 				Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-				if (damagerState == true) {
+				if (damagerState) {
 					event.setCancelled(true);
-				}else if (attackedState != null && attackedState == true) {
+				}else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
 				}
 			}
@@ -106,16 +106,16 @@ public class PvP implements Listener {
 	public void onPotionSplash(PotionSplashEvent event) {
 		if(event.getPotion().getShooter() instanceof Player) {
 			   for(LivingEntity entity : event.getAffectedEntities()) {
-			        if(entity instanceof Player && event != null) {
+			        if(entity instanceof Player) {
 			    		Player damager = (Player) event.getPotion().getShooter();
 			    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 			        	Player attacked = (Player) entity;
 			    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
 						if(damager != attacked) {
-				    		if(damagerState == true) {
+				    		if(damagerState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED");
-				    		}else if(attackedState != null && attackedState == true) {
+				    		}else if(attackedState != null && attackedState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 				    		}
@@ -134,10 +134,10 @@ public class PvP implements Listener {
 	    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
 	        	Player attacked = (Player) event.getHitEntity();
 	    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-	    		if(damagerState == true) {
+	    		if(damagerState) {
 	    			event.setCancelled(true);
 	    			Chat.send(damager, "PVP_DISABLED");
-	    		} else if(attackedState != null && attackedState == true) {
+	    		} else if(attackedState != null && attackedState) {
 	    			event.setCancelled(true);
 	    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 	    		}
@@ -157,9 +157,9 @@ public class PvP implements Listener {
     	    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
     	        	Player attacked = (Player) entity;
     	    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-    	    		if(attackedState != null && attackedState == true)
+    	    		if(attackedState != null && attackedState)
     	    			it.remove();
-    	    		else if(damagerState == true)
+    	    		else if(damagerState)
     	    			it.remove();
         		}
         	}
@@ -175,10 +175,10 @@ public class PvP implements Listener {
             final Player attacked = (Player) event.getCaught();
             Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
             if (damager.getInventory().getItemInMainHand().getType() == Material.FISHING_ROD || damager.getInventory().getItemInOffHand().getType() == Material.FISHING_ROD) {
-    			if (damagerState == true) {
+    			if (damagerState) {
     				event.setCancelled(true);
     				Chat.send(damager, "PVP_DISABLED");
-    			} else if (attackedState != null && attackedState == true) {
+    			} else if (attackedState != null && attackedState) {
     				event.setCancelled(true);
     				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
     			}
