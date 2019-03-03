@@ -17,7 +17,7 @@ public class PvPToggle extends JavaPlugin implements Listener {
 	
 	public FileConfiguration config = getConfig();
 	public static PvPToggle instance;
-	public static HashMap<UUID,Boolean> players = new HashMap<>();
+	public static HashMap<UUID,Boolean> players = new HashMap<>(); //False is pvp on True is pvp off
 	public static HashMap<UUID,Date> cooldowns = new HashMap<>();
 	
 	@Override

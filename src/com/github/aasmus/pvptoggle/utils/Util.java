@@ -3,11 +3,17 @@ package com.github.aasmus.pvptoggle.utils;
 import java.util.Date;
 import java.util.UUID;
 
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
 
 public class Util {
+	
+	private static float radius = 1f;
 	
 	public static boolean getPlayerState(UUID uuid){
 		Boolean result = PvPToggle.players.get(uuid);
@@ -43,4 +49,31 @@ public class Util {
 			return false;
 		}
 	}
+	
+	public static void particleEffect(Player p) {
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {			
+				if(PvPToggle.players.get(p.getUniqueId()) != false) {
+					this.cancel();
+				}
+				
+				double angle = 0;
+				Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 1);
+				Location location = p.getLocation();
+				
+				
+				for(int i = 0; i < 25; i++) {
+					double x = (radius * Math.sin(angle));
+					double z = (radius * Math.cos(angle));
+					angle += 0.251;
+					location.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+				}
+				
+			}
+			
+		}.runTaskTimer(PvPToggle.instance, 0L, 2L);
+	}
+	
 }

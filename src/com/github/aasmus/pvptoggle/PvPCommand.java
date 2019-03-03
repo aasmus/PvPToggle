@@ -30,6 +30,9 @@ public class PvPCommand implements CommandExecutor {
 							if(current == true) {
 								Util.setPlayerState(other.getUniqueId(), false);
 								Chat.send(other, "PVP_STATE_ENABLED");
+								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+									Util.particleEffect(other.getPlayer());
+								}
 							} else if(current == false) {
 								Util.setPlayerState(other.getUniqueId(), true);
 								Chat.send(other, "PVP_STATE_DISABLED");
@@ -37,6 +40,9 @@ public class PvPCommand implements CommandExecutor {
 						} else if(args[0].equalsIgnoreCase("on")) {
 							Util.setPlayerState(other.getUniqueId(), false);
 							Chat.send(other, "PVP_STATE_ENABLED");
+							if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+								Util.particleEffect(other.getPlayer());
+							}
 						} else if(args[0].equalsIgnoreCase("off")) {
 							Util.setPlayerState(other.getUniqueId(), true);
 							Chat.send(other, "PVP_STATE_DISABLED");
@@ -68,6 +74,9 @@ public class PvPCommand implements CommandExecutor {
 								if(current == true) {
 									Util.setPlayerState(p.getUniqueId(), false);
 									Chat.send(p, "PVP_STATE_ENABLED");
+									if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+										Util.particleEffect(p.getPlayer());
+									}
 								} else if(current == false) {
 									Util.setPlayerState(p.getUniqueId(), true);
 									Chat.send(p, "PVP_STATE_DISABLED");
@@ -76,6 +85,9 @@ public class PvPCommand implements CommandExecutor {
 								Util.setCooldownTime(p);
 								Util.setPlayerState(p.getUniqueId(), false);
 								Chat.send(p, "PVP_STATE_ENABLED");
+								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+									Util.particleEffect(p.getPlayer());
+								}
 							} else if(args[0].equalsIgnoreCase("off")) {
 								Util.setCooldownTime(p);
 								Util.setPlayerState(p.getUniqueId(), true);
@@ -109,6 +121,9 @@ public class PvPCommand implements CommandExecutor {
 								if(current == true) {
 									Util.setPlayerState(other.getUniqueId(), false);
 									Chat.send(other, "PVP_STATE_ENABLED");
+									if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+										Util.particleEffect(other.getPlayer());
+									}
 								} else if(current == false) {
 									Util.setPlayerState(other.getUniqueId(), true);
 									Chat.send(other, "PVP_STATE_DISABLED");
@@ -116,6 +131,9 @@ public class PvPCommand implements CommandExecutor {
 							} else if(args[0].equalsIgnoreCase("on")) {
 								Util.setPlayerState(other.getUniqueId(), false);
 								Chat.send(other, "PVP_STATE_ENABLED");
+								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+									Util.particleEffect(other.getPlayer());
+								}
 							} else if(args[0].equalsIgnoreCase("off")) {
 								Util.setPlayerState(other.getUniqueId(), true);
 								Chat.send(other, "PVP_STATE_DISABLED");
