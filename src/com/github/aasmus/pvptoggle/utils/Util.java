@@ -55,20 +55,20 @@ public class Util {
 
 			@Override
 			public void run() {			
-				if(PvPToggle.players.get(p.getUniqueId()) != false) {
+				if(!p.isOnline() || PvPToggle.players.get(p.getUniqueId()) != false) {
 					this.cancel();
-				}
-				
-				double angle = 0;
-				Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 1);
-				Location location = p.getLocation();
-				
-				
-				for(int i = 0; i < 25; i++) {
-					double x = (radius * Math.sin(angle));
-					double z = (radius * Math.cos(angle));
-					angle += 0.251;
-					location.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+				} else if(!p.isDead()) {
+					double angle = 0;
+					Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 1);
+					Location location = p.getLocation();
+					
+					
+					for(int i = 0; i < 25; i++) {
+						double x = (radius * Math.sin(angle));
+						double z = (radius * Math.cos(angle));
+						angle += 0.251;
+						location.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+					}
 				}
 				
 			}
