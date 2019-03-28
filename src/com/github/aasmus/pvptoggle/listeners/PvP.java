@@ -23,7 +23,7 @@ import com.github.aasmus.pvptoggle.utils.Chat;
 
 public class PvP implements Listener {
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	//fired when an entity is hit
 	public void onHit(EntityDamageByEntityEvent event) {
 		//check if attack was a player
@@ -82,7 +82,7 @@ public class PvP implements Listener {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	//fired when a player is shot with a flaming arrow
 	public void onFlameArrow(EntityCombustByEntityEvent event) {
 		if(event.getCombuster() instanceof Arrow) {
@@ -101,7 +101,7 @@ public class PvP implements Listener {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	//fired when a splash potion is thrown
 	public void onPotionSplash(PotionSplashEvent event) {
 		if(event.getPotion().getShooter() instanceof Player) {
@@ -125,7 +125,7 @@ public class PvP implements Listener {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	//fired when a lingering potion is thrown
 	public void onLingeringPotionSplash(LingeringPotionSplashEvent event) {
 		if(event.getEntity().getShooter() instanceof Player) {
@@ -145,7 +145,7 @@ public class PvP implements Listener {
 		}
 	}
 	
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     //fired when lingering potion cloud is active
     public void onCloudEffects(AreaEffectCloudApplyEvent event) {
     	if(event.getEntity().getSource() instanceof Player) {
@@ -166,7 +166,7 @@ public class PvP implements Listener {
     	}
     }
     
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     //fired when a player uses a fishing rod
     public void onPlayerFishing (PlayerFishEvent event) {
         if (event.getCaught() instanceof Player) {
