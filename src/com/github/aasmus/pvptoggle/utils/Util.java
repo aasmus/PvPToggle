@@ -13,7 +13,7 @@ import com.github.aasmus.pvptoggle.PvPToggle;
 
 public class Util {
 	
-	private static float radius = 1f;
+	private static float radius = .75f;
 	
 	public static boolean getPlayerState(UUID uuid){
 		Boolean result = PvPToggle.players.get(uuid);
@@ -67,7 +67,7 @@ public class Util {
 						double x = (radius * Math.sin(angle));
 						double z = (radius * Math.cos(angle));
 						angle += 0.251;
-						location.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+						p.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
 					}
 				}
 				
