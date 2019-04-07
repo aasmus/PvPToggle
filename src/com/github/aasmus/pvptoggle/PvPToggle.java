@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.github.aasmus.pvptoggle.listeners.PlayerJoin;
 import com.github.aasmus.pvptoggle.listeners.PlayerLeave;
 import com.github.aasmus.pvptoggle.listeners.PvP;
+import com.github.aasmus.pvptoggle.utils.PlaceholderAPIHook;
 
 public class PvPToggle extends JavaPlugin implements Listener {
 	
@@ -35,6 +36,10 @@ public class PvPToggle extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new PvP(), this);
 		//register command
 		this.getCommand("pvp").setExecutor(new PvPCommand());
+		
+		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+			new PlaceholderAPIHook(this).hook();
+		}		
 	}
 
     @Override
