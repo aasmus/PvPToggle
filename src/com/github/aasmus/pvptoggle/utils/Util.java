@@ -59,7 +59,6 @@ public class Util {
 					this.cancel();
 				} else if(!p.isDead()) {
 					double angle = 0;
-					Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 1);
 					Location location = p.getLocation();
 					
 					
@@ -67,7 +66,7 @@ public class Util {
 						double x = (radius * Math.sin(angle));
 						double z = (radius * Math.cos(angle));
 						angle += 0.251;
-						p.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+						p.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 0, 0);	
 					}
 				}
 				
