@@ -26,7 +26,13 @@ public class PvP implements Listener {
 
 	@EventHandler(ignoreCancelled = true)
 	//fired when an entity is hit
-	public void onHit(EntityDamageByEntityEvent event) {		
+	public void onHit(EntityDamageByEntityEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		//check if attack was a player
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
 			Player damager = (Player) event.getDamager(); //player who hit
@@ -95,6 +101,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a player is shot with a flaming arrow
 	public void onFlameArrow(EntityCombustByEntityEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getCombuster() instanceof Arrow) {
 			Arrow arrow = (Arrow) event.getCombuster();
 			if(arrow.getShooter() instanceof Player && event.getEntity() instanceof Player) {
@@ -117,6 +129,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a splash potion is thrown
 	public void onPotionSplash(PotionSplashEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getPotion().getShooter() instanceof Player) {
 			   for(LivingEntity entity : event.getAffectedEntities()) {
 			        if(entity instanceof Player) {
@@ -144,6 +162,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a lingering potion is thrown
 	public void onLingeringPotionSplash(LingeringPotionSplashEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getEntity().getShooter() instanceof Player) {
 			if(event.getHitEntity() instanceof Player) {
 	    		Player damager = (Player) event.getEntity().getShooter();
@@ -167,6 +191,12 @@ public class PvP implements Listener {
     @EventHandler(ignoreCancelled = true)
     //fired when lingering potion cloud is active
     public void onCloudEffects(AreaEffectCloudApplyEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+    	
     	if(event.getEntity().getSource() instanceof Player) {
     		Iterator<LivingEntity> it = event.getAffectedEntities().iterator();
         	while(it.hasNext()) {
@@ -192,6 +222,12 @@ public class PvP implements Listener {
     @EventHandler(ignoreCancelled = true)
     //fired when a player uses a fishing rod
     public void onPlayerFishing (PlayerFishEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getPlayer().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+    	
         if (event.getCaught() instanceof Player) {
             final Player damager = event.getPlayer();
             Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
