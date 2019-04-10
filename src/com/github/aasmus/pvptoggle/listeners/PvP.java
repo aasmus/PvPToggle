@@ -41,6 +41,7 @@ public class PvP implements Listener {
 				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 			} else {
 				Util.setCooldownTime(damager);
+				Util.setCooldownTime(attacked);
 			}
 		//checks if damage was done by a projectile
 		} else if (event.getDamager() instanceof Projectile) {
@@ -62,6 +63,7 @@ public class PvP implements Listener {
 						Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 					} else {
 						Util.setCooldownTime(damager);
+						Util.setCooldownTime(attacked);
 					}
 				}
 			}
@@ -84,6 +86,7 @@ public class PvP implements Listener {
 					Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 				} else {
 					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
 				}
 			}
 		}
@@ -105,6 +108,7 @@ public class PvP implements Listener {
 					event.setCancelled(true);
 				} else {
 					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
 				}
 			}
 		}
@@ -129,6 +133,7 @@ public class PvP implements Listener {
 				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 				    		} else {
 								Util.setCooldownTime(damager);
+								Util.setCooldownTime(attacked);
 							}
 						}
 			        }
@@ -153,6 +158,7 @@ public class PvP implements Listener {
 	    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 	    		} else {
 					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
 				}
 			}
 		}
@@ -170,12 +176,14 @@ public class PvP implements Listener {
     	    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
     	        	Player attacked = (Player) entity;
     	    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-    	    		if(attackedState != null && attackedState)
-    	    			it.remove();
-    	    		else if(damagerState)
-    	    			it.remove();
-    	    		else
+    	    		if(attackedState != null && attackedState) {
+    	    			it.remove();	
+    	    		} else if(damagerState) {
+    	    			it.remove();	
+    	    		} else {
     	    			Util.setCooldownTime(damager);
+    	    			Util.setCooldownTime(attacked);
+    	    		}
         		}
         	}
     	}
@@ -198,6 +206,7 @@ public class PvP implements Listener {
     				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
     			} else {
     				Util.setCooldownTime(damager);
+    				Util.setCooldownTime(attacked);
     			}
             }
         }
