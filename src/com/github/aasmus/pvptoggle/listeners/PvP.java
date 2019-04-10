@@ -19,13 +19,14 @@ import org.bukkit.event.player.PlayerFishEvent;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
 import com.github.aasmus.pvptoggle.utils.Chat;
+import com.github.aasmus.pvptoggle.utils.Util;
 
 
 public class PvP implements Listener {
 
 	@EventHandler(ignoreCancelled = true)
 	//fired when an entity is hit
-	public void onHit(EntityDamageByEntityEvent event) {
+	public void onHit(EntityDamageByEntityEvent event) {		
 		//check if attack was a player
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
 			Player damager = (Player) event.getDamager(); //player who hit
@@ -38,6 +39,8 @@ public class PvP implements Listener {
 			} else if (attackedState != null && attackedState) {
 				event.setCancelled(true);
 				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+			} else {
+				Util.setCooldownTime(damager);
 			}
 		//checks if damage was done by a projectile
 		} else if (event.getDamager() instanceof Projectile) {
@@ -54,9 +57,11 @@ public class PvP implements Listener {
 					if(damagerState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED");
-					}else if(attackedState != null && attackedState) {
+					} else if(attackedState != null && attackedState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+					} else {
+						Util.setCooldownTime(damager);
 					}
 				}
 			}
@@ -74,9 +79,11 @@ public class PvP implements Listener {
 				if (damagerState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED");
-				}else if (attackedState != null && attackedState) {
+				} else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+				} else {
+					Util.setCooldownTime(damager);
 				}
 			}
 		}
@@ -94,8 +101,10 @@ public class PvP implements Listener {
 				Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
 				if (damagerState) {
 					event.setCancelled(true);
-				}else if (attackedState != null && attackedState) {
+				} else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
+				} else {
+					Util.setCooldownTime(damager);
 				}
 			}
 		}
@@ -115,10 +124,12 @@ public class PvP implements Listener {
 				    		if(damagerState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED");
-				    		}else if(attackedState != null && attackedState) {
+				    		} else if(attackedState != null && attackedState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
-				    		}
+				    		} else {
+								Util.setCooldownTime(damager);
+							}
 						}
 			        }
 			   }
@@ -140,7 +151,9 @@ public class PvP implements Listener {
 	    		} else if(attackedState != null && attackedState) {
 	    			event.setCancelled(true);
 	    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
-	    		}
+	    		} else {
+					Util.setCooldownTime(damager);
+				}
 			}
 		}
 	}
@@ -161,6 +174,8 @@ public class PvP implements Listener {
     	    			it.remove();
     	    		else if(damagerState)
     	    			it.remove();
+    	    		else
+    	    			Util.setCooldownTime(damager);
         		}
         	}
     	}
@@ -181,6 +196,8 @@ public class PvP implements Listener {
     			} else if (attackedState != null && attackedState) {
     				event.setCancelled(true);
     				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+    			} else {
+    				Util.setCooldownTime(damager);
     			}
             }
         }
