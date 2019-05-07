@@ -1,4 +1,4 @@
-#NOTICE
+# NOTICE
 This branch is for minecraft versions under 1.13!
 
 # PvPToggle
