@@ -1,3 +1,6 @@
+#NOTICE
+This branch is for minecraft versions under 1.13!
+
 # PvPToggle
 Plugin to toggle the ability to pvp
 
@@ -16,3 +19,5 @@ pvptoggle.others - grants access to /pvp (player) command
 pvptoggle.others.set - grants access to /pvp (player) {toggle|on|off} command
 
 pvptoggle.bypass - allows player to bypass the /pvp off cooldown
+
+pvptoggle.reload - allows player to reload the config
