@@ -42,7 +42,7 @@ public class PvPToggle extends JavaPlugin implements Listener {
 		blockedWorlds = config.getStringList("SETTINGS.BLOCKED_WORLDS");
 		
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-			new PlaceholderAPIHook(this).hook();
+			new PlaceholderAPIHook(this).register();
 		}		
 	}
 
