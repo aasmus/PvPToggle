@@ -23,3 +23,6 @@ permissions:
   pvptoggle.bypass:
     description: allows player to bypass cooldown
     default: op
+  pvptoggle.reload:
+    description: allows player to reload config
+    default: op

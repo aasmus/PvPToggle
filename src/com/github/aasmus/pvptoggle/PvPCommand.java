@@ -26,7 +26,10 @@ public class PvPCommand implements CommandExecutor {
 					    Chat.send(console, "NO_PLAYER", args[1]);
 					} else { //set pvp state
 						Boolean current = PvPToggle.players.get(other.getUniqueId());
-						if(args[0].equals("toggle")) {
+						if(args[0].equals("reload")) {
+							reloadConfig();
+							return true;
+						} else if(args[0].equals("toggle")) {
 							if(current == true) {
 								Util.setPlayerState(other.getUniqueId(), false);
 								Chat.send(other, "PVP_STATE_ENABLED");
@@ -65,6 +68,10 @@ public class PvPCommand implements CommandExecutor {
 					if(p.hasPermission("pvptoggle.others.set"))
 						Chat.send(p, "HELP_SET_OTHERS");
 				} else if(args.length == 1) {
+					if(args[0].equals("reload") && p.hasPermission("pvptoggle.reload")) {
+						reloadConfig();
+						return true;
+					}
 					if(p.hasPermission("pvptoggle.allow")) {
 						
 						if(Util.getCooldown(p) == false || p.hasPermission("pvptoggle.bypass")) {
@@ -150,5 +157,9 @@ public class PvPCommand implements CommandExecutor {
 		}
 		return false;
 	}
+	
+    public void reloadConfig() {
+    	PvPToggle.instance.config = PvPToggle.instance.getConfig();
+    }
 	
 }

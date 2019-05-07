@@ -17,7 +17,7 @@ import com.github.aasmus.pvptoggle.utils.PlaceholderAPIHook;
 
 public class PvPToggle extends JavaPlugin implements Listener {
 	
-	public FileConfiguration config = getConfig();
+	public FileConfiguration config;
 	public static List<String> blockedWorlds;
 	public static PvPToggle instance;
 	public static HashMap<UUID,Boolean> players = new HashMap<>(); //False is pvp on True is pvp off
@@ -30,6 +30,7 @@ public class PvPToggle extends JavaPlugin implements Listener {
 		if(config != null) {
 			this.saveDefaultConfig();	
 		}
+		this.config = getConfig();
 		
 		//register events
 		getServer().getPluginManager().registerEvents(this, this);
