@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
 import com.github.aasmus.pvptoggle.utils.Chat;
+import com.github.aasmus.pvptoggle.utils.Util;
 
 
 public class PvP implements Listener {
@@ -26,6 +27,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when an entity is hit
 	public void onHit(EntityDamageByEntityEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		//check if attack was a player
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
 			Player damager = (Player) event.getDamager(); //player who hit
@@ -38,6 +45,9 @@ public class PvP implements Listener {
 			} else if (attackedState != null && attackedState) {
 				event.setCancelled(true);
 				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+			} else {
+				Util.setCooldownTime(damager);
+				Util.setCooldownTime(attacked);
 			}
 		//checks if damage was done by a projectile
 		} else if (event.getDamager() instanceof Projectile) {
@@ -54,9 +64,12 @@ public class PvP implements Listener {
 					if(damagerState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED");
-					}else if(attackedState != null && attackedState) {
+					} else if(attackedState != null && attackedState) {
 						event.setCancelled(true);
 						Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+					} else {
+						Util.setCooldownTime(damager);
+						Util.setCooldownTime(attacked);
 					}
 				}
 			}
@@ -74,9 +87,12 @@ public class PvP implements Listener {
 				if (damagerState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED");
-				}else if (attackedState != null && attackedState) {
+				} else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
 					Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+				} else {
+					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
 				}
 			}
 		}
@@ -85,6 +101,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a player is shot with a flaming arrow
 	public void onFlameArrow(EntityCombustByEntityEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getCombuster() instanceof Arrow) {
 			Arrow arrow = (Arrow) event.getCombuster();
 			if(arrow.getShooter() instanceof Player && event.getEntity() instanceof Player) {
@@ -94,8 +116,11 @@ public class PvP implements Listener {
 				Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
 				if (damagerState) {
 					event.setCancelled(true);
-				}else if (attackedState != null && attackedState) {
+				} else if (attackedState != null && attackedState) {
 					event.setCancelled(true);
+				} else {
+					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
 				}
 			}
 		}
@@ -104,6 +129,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a splash potion is thrown
 	public void onPotionSplash(PotionSplashEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getPotion().getShooter() instanceof Player) {
 			   for(LivingEntity entity : event.getAffectedEntities()) {
 			        if(entity instanceof Player) {
@@ -115,10 +146,13 @@ public class PvP implements Listener {
 				    		if(damagerState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED");
-				    		}else if(attackedState != null && attackedState) {
+				    		} else if(attackedState != null && attackedState) {
 				    			event.setCancelled(true);
 				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
-				    		}
+				    		} else {
+								Util.setCooldownTime(damager);
+								Util.setCooldownTime(attacked);
+							}
 						}
 			        }
 			   }
@@ -128,6 +162,12 @@ public class PvP implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	//fired when a lingering potion is thrown
 	public void onLingeringPotionSplash(LingeringPotionSplashEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+		
 		if(event.getEntity().getShooter() instanceof Player) {
 			if(event.getHitEntity() instanceof Player) {
 	    		Player damager = (Player) event.getEntity().getShooter();
@@ -140,7 +180,10 @@ public class PvP implements Listener {
 	    		} else if(attackedState != null && attackedState) {
 	    			event.setCancelled(true);
 	    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
-	    		}
+	    		} else {
+					Util.setCooldownTime(damager);
+					Util.setCooldownTime(attacked);
+				}
 			}
 		}
 	}
@@ -148,6 +191,12 @@ public class PvP implements Listener {
     @EventHandler(ignoreCancelled = true)
     //fired when lingering potion cloud is active
     public void onCloudEffects(AreaEffectCloudApplyEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getEntity().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+    	
     	if(event.getEntity().getSource() instanceof Player) {
     		Iterator<LivingEntity> it = event.getAffectedEntities().iterator();
         	while(it.hasNext()) {
@@ -157,10 +206,14 @@ public class PvP implements Listener {
     	    		Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
     	        	Player attacked = (Player) entity;
     	    		Boolean attackedState = PvPToggle.players.get(attacked.getUniqueId());
-    	    		if(attackedState != null && attackedState)
-    	    			it.remove();
-    	    		else if(damagerState)
-    	    			it.remove();
+    	    		if(attackedState != null && attackedState) {
+    	    			it.remove();	
+    	    		} else if(damagerState) {
+    	    			it.remove();	
+    	    		} else {
+    	    			Util.setCooldownTime(damager);
+    	    			Util.setCooldownTime(attacked);
+    	    		}
         		}
         	}
     	}
@@ -169,6 +222,12 @@ public class PvP implements Listener {
     @EventHandler(ignoreCancelled = true)
     //fired when a player uses a fishing rod
     public void onPlayerFishing (PlayerFishEvent event) {
+		for(String world : PvPToggle.blockedWorlds) {
+			if(event.getPlayer().getWorld().getName().equals(world)) {
+				return;
+			}
+		}
+    	
         if (event.getCaught() instanceof Player) {
             final Player damager = event.getPlayer();
             Boolean damagerState = PvPToggle.players.get(damager.getUniqueId());
@@ -181,6 +240,9 @@ public class PvP implements Listener {
     			} else if (attackedState != null && attackedState) {
     				event.setCancelled(true);
     				Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
+    			} else {
+    				Util.setCooldownTime(damager);
+    				Util.setCooldownTime(attacked);
     			}
             }
         }

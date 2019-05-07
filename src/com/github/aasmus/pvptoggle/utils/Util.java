@@ -3,7 +3,6 @@ package com.github.aasmus.pvptoggle.utils;
 import java.util.Date;
 import java.util.UUID;
 
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;

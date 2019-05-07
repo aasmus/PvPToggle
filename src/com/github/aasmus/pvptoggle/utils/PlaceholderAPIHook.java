@@ -1,18 +1,20 @@
 package com.github.aasmus.pvptoggle.utils;
 
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
-import me.clip.placeholderapi.external.EZPlaceholderHook;
 
-public class PlaceholderAPIHook extends EZPlaceholderHook {
+public class PlaceholderAPIHook extends PlaceholderExpansion {
 
-	public PlaceholderAPIHook(Plugin plugin) {
-		super(plugin, "pvptoggle");
+	private PvPToggle plugin;
+	
+	public PlaceholderAPIHook(PvPToggle plugin) {
+		this.plugin = plugin;
 	}
 	
+	@Override
 	public String onPlaceholderRequest(Player player, String identifier) {
 		if(player == null) { return ""; }
 		
@@ -22,6 +24,32 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public boolean persist() {
+		return true;
+	}
+	
+	@Override
+	public boolean canRegister() {
+		return true;
+	}
+	
+	@Override
+	public String getIdentifier() {
+		return "PvPToggle";
+	}
+
+	@Override
+	public String getAuthor() {
+		return plugin.getDescription().getAuthors().toString();
+	}
+
+
+	@Override
+	public String getVersion() {
+		return plugin.getDescription().getVersion();
 	}
 
 }
