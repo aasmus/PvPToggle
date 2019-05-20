@@ -44,7 +44,7 @@ public class PvPToggle extends JavaPlugin implements Listener {
 		
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 			new PlaceholderAPIHook(this).register();
-		}		
+		}
 	}
 
     @Override
