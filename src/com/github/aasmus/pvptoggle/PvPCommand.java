@@ -79,7 +79,7 @@ public class PvPCommand implements CommandExecutor {
 							Boolean current = PvPToggle.players.get(p.getUniqueId());
 							if(args[0].equals("toggle")) {
 								Util.setCooldownTime(p);
-								if(current == null || current == true) {
+								if(current == true) {
 									Util.setPlayerState(p.getUniqueId(), false);
 									Chat.send(p, "PVP_STATE_ENABLED");
 									if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {

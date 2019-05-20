@@ -32,7 +32,7 @@ public class Chat {
 		if(msg.equals(""))
 			return;
 		String output = msg.replaceAll("<parameter>", parameter);
-		if(pvpState != null ? pvpState == true : PvPToggle.instance.getConfig().getBoolean("SETTINGS.DEFAULT_PVP_OFF")) {
+		if(pvpState == true) {
 			output = output.replaceAll("<pvpstate>", "off");
 		} else {
 			output = output.replaceAll("<pvpstate>", "on");
