@@ -16,3 +16,5 @@ pvptoggle.others - grants access to /pvp (player) command
 pvptoggle.others.set - grants access to /pvp (player) {toggle|on|off} command
 
 pvptoggle.bypass - allows player to bypass the /pvp off cooldown
+
+pvptoggle.reload - allows player to reload the config
