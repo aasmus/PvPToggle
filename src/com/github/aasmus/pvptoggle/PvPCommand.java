@@ -61,6 +61,7 @@ public class PvPCommand implements CommandExecutor {
 			if(cmd.getName().equalsIgnoreCase("pvp")) {
 				Player p = (Player) sender;
 				if(args.length == 0) {
+					Chat.send(p, "PVP_STATUS", null, PvPToggle.players.get(p.getUniqueId()));
 					Chat.send(p, "HELP_HEADER");
 					Chat.send(p, "HELP_GENERAL_USEAGE");
 					if(p.hasPermission("pvptoggle.others"))
