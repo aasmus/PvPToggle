@@ -16,26 +16,26 @@ public class Util {
 	private static float radius = .75f;
 	
 	public static boolean getPlayerState(UUID uuid){
-		Boolean result = PvPToggle.players.get(uuid);
+		Boolean result = PvPToggle.instance.players.get(uuid);
 		if(result==null) return false;
 		else return result;
 	}
 	
 	public static void setPlayerState(UUID uuid,boolean state){
-		PvPToggle.players.put(uuid,state);
+		PvPToggle.instance.players.put(uuid,state);
 	}
 	
 	public static void setCooldownTime(Player p) {
-		PvPToggle.cooldowns.put(p.getUniqueId(), new Date());
+		PvPToggle.instance.cooldowns.put(p.getUniqueId(), new Date());
 	}
 	
 	public static void removeCooldownTime(Player p) {
-		PvPToggle.cooldowns.remove(p.getUniqueId());
+		PvPToggle.instance.cooldowns.remove(p.getUniqueId());
 	}
 	
 	public static boolean getCooldown(Player p) {
-		if(PvPToggle.cooldowns.containsKey(p.getUniqueId())) {
-			Date lastChange = PvPToggle.cooldowns.get(p.getUniqueId());
+		if(PvPToggle.instance.cooldowns.containsKey(p.getUniqueId())) {
+			Date lastChange = PvPToggle.instance.cooldowns.get(p.getUniqueId());
 			Date currentTime = new Date();
 			int seconds = (int) (currentTime.getTime() - lastChange.getTime())/1000;
 			if(seconds > PvPToggle.instance.getConfig().getInt("SETTINGS.COOLDOWN") || p.hasPermission("pvptoggle.bypass")) {
@@ -55,7 +55,7 @@ public class Util {
 
 			@Override
 			public void run() {			
-				if(!p.isOnline() || PvPToggle.players.get(p.getUniqueId()) != false) {
+				if(!p.isOnline() || PvPToggle.instance.players.get(p.getUniqueId()) != false) {
 					this.cancel();
 				} else if(!p.isDead()) {
 					double angle = 0;

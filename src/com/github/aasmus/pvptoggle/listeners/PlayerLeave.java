@@ -12,7 +12,7 @@ public class PlayerLeave implements Listener {
 	@EventHandler
     public void onQuit(PlayerQuitEvent event) {
 		Player p = event.getPlayer();
-		PvPToggle.players.remove(p.getUniqueId()); //remove player from players hash map
+		PvPToggle.instance.players.remove(p.getUniqueId()); //remove player from players hash map
 	}
 
 }
