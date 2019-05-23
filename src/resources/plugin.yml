@@ -1,7 +1,8 @@
 main: com.github.aasmus.pvptoggle.PvPToggle
 softdepend: [PlaceholderAPI]
 name: PvPToggle
-version: 1.5.6
+version: 1.5.7
+api-version: 1.12
 author: aasmus
 description: Plugin that allows players to toggle PvP state
 commands:
