@@ -26,11 +26,11 @@ public class PvPToggle extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		instance = this;
+		this.config = getConfig();
 		//save config
 		if(config != null) {
 			this.saveDefaultConfig();	
 		}
-		this.config = getConfig();
 		
 		//register events
 		getServer().getPluginManager().registerEvents(this, this);

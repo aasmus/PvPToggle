@@ -67,7 +67,7 @@ public class Util {
 						double x = (radius * Math.sin(angle));
 						double z = (radius * Math.cos(angle));
 						angle += 0.251;
-						p.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);	
+						p.getWorld().spawnParticle(Particle.REDSTONE, location.getX()+x, location.getY(), location.getZ()+z, 0, 0, 1, 0, dustOptions);
 					}
 				}
 				
