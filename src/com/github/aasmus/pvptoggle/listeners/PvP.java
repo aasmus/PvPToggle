@@ -1,5 +1,6 @@
 package com.github.aasmus.pvptoggle.listeners;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.bukkit.Material;
@@ -143,10 +144,20 @@ public class PvP implements Listener {
 			    		Boolean attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
 						if(damager != attacked) {
 				    		if(damagerState) {
-				    			event.setCancelled(true);
+				    		    Collection<LivingEntity> affected = event.getAffectedEntities();
+				    		    for(LivingEntity ent : affected){
+				    		        if(ent instanceof Player && ent != damager){
+				    		            event.setIntensity(ent, 0);
+				    		        }
+				    		    }
 				    			Chat.send(damager, "PVP_DISABLED");
 				    		} else if(attackedState != null && attackedState) {
-				    			event.setCancelled(true);
+				    		    Collection<LivingEntity> affected = event.getAffectedEntities();
+				    		    for(LivingEntity ent : affected){
+				    		        if(ent instanceof Player && ent != damager){
+				    		            event.setIntensity(ent, 0);
+				    		        }
+				    		    }
 				    			Chat.send(damager, "PVP_DISABLED_OTHERS", attacked.getDisplayName());
 				    		} else {
 								Util.setCooldownTime(damager);
