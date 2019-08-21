@@ -73,5 +73,4 @@ public class Util {
 			
 		}.runTaskTimer(PvPToggle.instance, 0L, 2L);
 	}
-	
 }

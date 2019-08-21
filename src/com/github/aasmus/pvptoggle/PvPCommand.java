@@ -41,11 +41,11 @@ public class PvPCommand implements CommandExecutor {
 								Chat.send(other, "PVP_STATE_DISABLED");
 							}
 						} else if(args[0].equalsIgnoreCase("on")) {
-							Util.setPlayerState(other.getUniqueId(), false);
-							Chat.send(other, "PVP_STATE_ENABLED");
-							if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+							if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES") && current == true) {
 								Util.particleEffect(other.getPlayer());
 							}
+							Util.setPlayerState(other.getUniqueId(), false);
+							Chat.send(other, "PVP_STATE_ENABLED");
 						} else if(args[0].equalsIgnoreCase("off")) {
 							Util.setPlayerState(other.getUniqueId(), true);
 							Chat.send(other, "PVP_STATE_DISABLED");
@@ -90,12 +90,12 @@ public class PvPCommand implements CommandExecutor {
 									Chat.send(p, "PVP_STATE_DISABLED");
 								}
 							} else if(args[0].equalsIgnoreCase("on")) {
+								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES") && current == true) {
+									Util.particleEffect(p.getPlayer());
+								}
 								Util.setCooldownTime(p);
 								Util.setPlayerState(p.getUniqueId(), false);
 								Chat.send(p, "PVP_STATE_ENABLED");
-								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
-									Util.particleEffect(p.getPlayer());
-								}
 							} else if(args[0].equalsIgnoreCase("off")) {
 								Util.setCooldownTime(p);
 								Util.setPlayerState(p.getUniqueId(), true);
@@ -137,11 +137,11 @@ public class PvPCommand implements CommandExecutor {
 									Chat.send(other, "PVP_STATE_DISABLED");
 								}
 							} else if(args[0].equalsIgnoreCase("on")) {
-								Util.setPlayerState(other.getUniqueId(), false);
-								Chat.send(other, "PVP_STATE_ENABLED");
-								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+								if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES") && current == true) {
 									Util.particleEffect(other.getPlayer());
 								}
+								Util.setPlayerState(other.getUniqueId(), false);
+								Chat.send(other, "PVP_STATE_ENABLED");
 							} else if(args[0].equalsIgnoreCase("off")) {
 								Util.setPlayerState(other.getUniqueId(), true);
 								Chat.send(other, "PVP_STATE_DISABLED");
