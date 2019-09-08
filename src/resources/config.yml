@@ -1,5 +1,5 @@
 SETTINGS:
-##How much time a player must wait to use /pvp on/off/toggle in seconds after running the command or being in pvp
+##How much time a player must wait to use /pvp off/toggle (if pvp is on) in seconds after running the command or being in pvp
   COOLDOWN: 0
 ##True makes pvp off by default. False makes pvp on by default.
   DEFAULT_PVP_OFF: true

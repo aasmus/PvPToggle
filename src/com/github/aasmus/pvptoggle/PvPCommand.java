@@ -78,8 +78,8 @@ public class PvPCommand implements CommandExecutor {
 						if(Util.getCooldown(p) == false || p.hasPermission("pvptoggle.bypass")) {
 							Boolean current = PvPToggle.instance.players.get(p.getUniqueId());
 							if(args[0].equals("toggle")) {
-								Util.setCooldownTime(p);
 								if(current == true) {
+									Util.setCooldownTime(p);
 									Util.setPlayerState(p.getUniqueId(), false);
 									Chat.send(p, "PVP_STATE_ENABLED");
 									if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
@@ -97,7 +97,6 @@ public class PvPCommand implements CommandExecutor {
 								Util.setPlayerState(p.getUniqueId(), false);
 								Chat.send(p, "PVP_STATE_ENABLED");
 							} else if(args[0].equalsIgnoreCase("off")) {
-								Util.setCooldownTime(p);
 								Util.setPlayerState(p.getUniqueId(), true);
 								Chat.send(p, "PVP_STATE_DISABLED");
 							} else if(args[0].equalsIgnoreCase("status")) {
