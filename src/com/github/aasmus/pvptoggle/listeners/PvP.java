@@ -28,7 +28,6 @@ public class PvP implements Listener {
 	//fired when an entity is hit
 	public void onHit(EntityDamageByEntityEvent event) {
 		if (PvPToggle.blockedWorlds.contains(event.getEntity().getWorld().getName())) {
-			event.setCancelled(true);
 			return;
 		}
 		
@@ -101,7 +100,6 @@ public class PvP implements Listener {
 	//fired when a player is shot with a flaming arrow
 	public void onFlameArrow(EntityCombustByEntityEvent event) {
 		if (PvPToggle.blockedWorlds.contains(event.getEntity().getWorld().getName())) {
-			event.setCancelled(true);
 			return;
 		}
 		
@@ -128,7 +126,6 @@ public class PvP implements Listener {
 	//fired when a splash potion is thrown
 	public void onPotionSplash(PotionSplashEvent event) {
 		if (PvPToggle.blockedWorlds.contains(event.getEntity().getWorld().getName())) {
-			event.setCancelled(true);
 			return;
 		}
 		
@@ -170,7 +167,6 @@ public class PvP implements Listener {
     //fired when lingering potion cloud is active
     public void onCloudEffects(AreaEffectCloudApplyEvent event) {
 		if (PvPToggle.blockedWorlds.contains(event.getEntity().getWorld().getName())) {
-			event.setCancelled(true);
 			return;
 		}
     	
@@ -200,7 +196,6 @@ public class PvP implements Listener {
     //fired when a player uses a fishing rod
     public void onPlayerFishing (PlayerFishEvent event) {
 		if (PvPToggle.blockedWorlds.contains(event.getPlayer().getWorld().getName())) {
-			event.setCancelled(true);
 			return;
 		}
     	
