@@ -38,7 +38,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 	
 	@Override
 	public String getIdentifier() {
-		return "PvPToggle-RF";
+		return "PvPToggle";
 	}
 
 	@Override
