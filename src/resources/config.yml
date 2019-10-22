@@ -1,11 +1,10 @@
 SETTINGS:
-##How much time a player must wait to use /pvp off/toggle (if pvp is on) in seconds after running the command or being in pvp
+##How much time a player must wait to use /pvp on/off/toggle in seconds after running the command or being in pvp
   COOLDOWN: 0
 ##True makes pvp off by default. False makes pvp on by default.
   DEFAULT_PVP_OFF: true
 ##Show PVP on particle effects
   PARTICLES: true
-## Worlds to disable PvP toggling in (i.e. will always use the world's settings)
   BLOCKED_WORLDS: []
 ##<pvpstate> goes in place of a player's current pvp state
 ##<parameter> goes in place of a player's name or other parameter
@@ -25,7 +24,3 @@ MESSAGES:
   PVP_DISABLED: '&cYou have pvp disabled!'
   PVP_DISABLED_OTHERS: '&c<parameter> has pvp disabled!'
   PVP_COOLDOWN: '&cToo fast! You can turn off pvp in <parameter> seconds.'
-  PVP_WORLD_CHANGE_DISABLED: '&aYour pvp has been disabled because the world you entered does not allow pvp.'
-  PVP_WORLD_CHANGE_REQUIRED: '&aYour pvp has been enabled because the world you enter requires pvp.'
-  PVP_WORLD_CANNOT_CHANGE_SELF: '&cYou cannot change pvp state in this world.'
-  PVP_WORLD_CANNOT_CHANGE_OTHERS: '&cYou cannot change pvp state in that world.'
