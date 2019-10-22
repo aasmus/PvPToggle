@@ -3,9 +3,8 @@ package com.github.aasmus.pvptoggle.utils;
 import java.util.Date;
 import java.util.UUID;
 
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Particle;
+import org.bukkit.*;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -21,10 +20,40 @@ public class Util {
 		else return result;
 	}
 	
-	public static void setPlayerState(UUID uuid,boolean state){
+	public static void setPlayerState(UUID uuid, boolean state){
 		PvPToggle.instance.players.put(uuid,state);
 	}
-	
+
+	// Set player state while performing checks to make sure it's a valid switch.
+	public static boolean setPlayerState(Player player, boolean state, CommandSender caller) {
+		if (player == null) {
+			return false;
+		}
+
+		World world = player.getWorld();
+		// You can't set the state to false (PVP enabled) if the world doesn't allow it
+		if (!world.getPVP() && !state) {
+			if (caller == player) {
+				Chat.send(caller, "PVP_WORLD_CANNOT_CHANGE_SELF");
+			} else {
+				Chat.send(caller, "PVP_WORLD_CANNOT_CHANGE_OTHERS");
+			}
+			return false;
+		}
+		// You can't set the state to true (PVP disabled) if the world requires it
+		if (world.getPVP() && PvPToggle.blockedWorlds.contains(world.getName()) && state) {
+			if (caller == player) {
+				Chat.send(caller, "PVP_WORLD_CANNOT_CHANGE_SELF");
+			} else {
+				Chat.send(caller, "PVP_WORLD_CANNOT_CHANGE_OTHERS");
+			}
+			return false;
+		}
+
+		setPlayerState(player.getUniqueId(), state);
+		return true;
+	}
+
 	public static void setCooldownTime(Player p) {
 		PvPToggle.instance.cooldowns.put(p.getUniqueId(), new Date());
 	}
