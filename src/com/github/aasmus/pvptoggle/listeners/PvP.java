@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -97,6 +98,12 @@ public class PvP implements Listener {
 				}
 			}
 		} else if (event.getDamager() instanceof LightningStrike && event.getDamager().getMetadata("TRIDENT").size() >= 1 && event.getEntity() instanceof Player) {
+			Player attacked = (Player) event.getEntity();
+			Boolean attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+			if (attackedState != null && attackedState) {
+				event.setCancelled(true);
+			}
+		} else if (event.getDamager() instanceof Firework && event.getEntity() instanceof Player) {
 			Player attacked = (Player) event.getEntity();
 			Boolean attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
 			if (attackedState != null && attackedState) {
