@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -16,6 +17,8 @@ import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.weather.LightningStrikeEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
 import com.github.aasmus.pvptoggle.utils.Chat;
@@ -92,6 +95,12 @@ public class PvP implements Listener {
 					Util.setCooldownTime(damager);
 					Util.setCooldownTime(attacked);
 				}
+			}
+		} else if (event.getDamager() instanceof LightningStrike && event.getDamager().getMetadata("TRIDENT").size() >= 1 && event.getEntity() instanceof Player) {
+			Player attacked = (Player) event.getEntity();
+			Boolean attackedState = PvPToggle.instance.players.get(attacked.getUniqueId());
+			if (attackedState != null && attackedState) {
+				event.setCancelled(true);
 			}
 		}
 	}
@@ -218,4 +227,13 @@ public class PvP implements Listener {
             }
         }
     }
+    
+    //Tag lightning strike as from a trident
+	@EventHandler(ignoreCancelled = true)
+	public void onLightningStrike(LightningStrikeEvent event){
+		if(event.getCause() == LightningStrikeEvent.Cause.TRIDENT){
+			event.getLightning().setMetadata("TRIDENT", new FixedMetadataValue(PvPToggle.instance, event.getLightning().getLocation()));
+		}
+	}
+    
 }
