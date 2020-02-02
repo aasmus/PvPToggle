@@ -20,9 +20,12 @@ public class PlayerChangeWorld implements Listener {
         if (!world.getPVP() && playerPvpEnabled) {
             Util.setPlayerState(player.getUniqueId(), true);
             Chat.send(player, "PVP_WORLD_CHANGE_DISABLED");
-            if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+            /*if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                 Util.particleEffect(player);
             }
+			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
+				Util.ChangeNametag(player, "&c");
+			}*/
             return;
         }
 
@@ -33,6 +36,9 @@ public class PlayerChangeWorld implements Listener {
             if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                 Util.particleEffect(player);
             }
+			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
+				Util.ChangeNametag(player, "&c");
+			}
             return;
         }
     }

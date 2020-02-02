@@ -14,8 +14,13 @@ public class PlayerJoin implements Listener {
 	public PlayerJoin() {
 		for(Player p : Bukkit.getOnlinePlayers()) {
 			PvPToggle.instance.players.put(p.getUniqueId(), PvPToggle.instance.getConfig().getBoolean("SETTINGS.DEFAULT_PVP_OFF")); //add player to players hash map and set their pvp state
-			if(PvPToggle.instance.players.get(p.getUniqueId()) == false && PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
-				Util.particleEffect(p.getPlayer());
+			if(PvPToggle.instance.players.get(p.getUniqueId()) == false) {
+				if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+					Util.particleEffect(p.getPlayer());	
+				}
+				if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
+    				Util.ChangeNametag(p.getPlayer(), "&c");
+				}
 			}
 		}
 	}
@@ -24,8 +29,13 @@ public class PlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
     	Player p = event.getPlayer();
     	PvPToggle.instance.players.put(p.getUniqueId(), PvPToggle.instance.getConfig().getBoolean("SETTINGS.DEFAULT_PVP_OFF")); //add player to players hash map and set their pvp state
-		if(PvPToggle.instance.players.get(p.getUniqueId()) == false && PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
-			Util.particleEffect(p.getPlayer());
+		if(PvPToggle.instance.players.get(p.getUniqueId()) == false) {
+			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
+				Util.particleEffect(p.getPlayer());	
+			}
+			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
+				Util.ChangeNametag(p.getPlayer(), "&c");
+			}
 		}
 	}
 

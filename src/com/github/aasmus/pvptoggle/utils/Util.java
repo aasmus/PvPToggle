@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.github.aasmus.pvptoggle.PvPToggle;
+import com.nametagedit.plugin.NametagEdit;
 
 public class Util {
 	
@@ -76,6 +77,16 @@ public class Util {
 			}
 		} else {
 			return false;
+		}
+	}
+	
+	public static void ChangeNametag(Player p, String color) {
+		if(PvPToggle.instance.getServer().getPluginManager().isPluginEnabled("NametagEdit")) {
+			if(color == "reset") {
+				NametagEdit.getApi().clearNametag(p);
+			} else {
+				NametagEdit.getApi().setPrefix(p, color);
+			}	
 		}
 	}
 	
