@@ -1,5 +1,6 @@
 package com.github.aasmus.pvptoggle;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.github.aasmus.pvptoggle.listeners.PlayerJoin;
 import com.github.aasmus.pvptoggle.listeners.PlayerLeave;
 import com.github.aasmus.pvptoggle.listeners.PvP;
 import com.github.aasmus.pvptoggle.listeners.PlayerChangeWorld;
+import com.github.aasmus.pvptoggle.utils.PersistentData;
 import com.github.aasmus.pvptoggle.utils.PlaceholderAPIHook;
 
 public class PvPToggle extends JavaPlugin implements Listener {
@@ -24,6 +26,8 @@ public class PvPToggle extends JavaPlugin implements Listener {
 	public HashMap<UUID,Boolean> players = new HashMap<>(); //False is pvp on True is pvp off
 	public HashMap<UUID,Date> cooldowns = new HashMap<>();
 	
+	public PersistentData dataUtils;
+	
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -32,6 +36,9 @@ public class PvPToggle extends JavaPlugin implements Listener {
 		if(config != null) {
 			this.saveDefaultConfig();	
 		}
+		
+		File PVPData = new File(getDataFolder(), "Data");
+		dataUtils = new PersistentData(PVPData);
 		
 		//register events
 		getServer().getPluginManager().registerEvents(this, this);
