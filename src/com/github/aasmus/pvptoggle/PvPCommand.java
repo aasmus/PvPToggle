@@ -134,14 +134,15 @@ public class PvPCommand implements CommandExecutor {
 								if(sender.hasPermission("pvptoggle.others")) {
 									Player other = Bukkit.getPlayerExact(args[0]);
 									if(other == null) {
-										args[0].replaceAll("\\\\", "");
 										Chat.send(p, "NO_PLAYER", args[0]);	
 									} else {
 										current = PvPToggle.instance.players.get(other.getUniqueId());
 										Chat.send(p, "PVP_STATUS_OTHERS", other.getDisplayName(), current);
 									}
 								} else {
-									Chat.send(p, "COMMAND_INVALID_PARAMETER", args[0]);
+									if(!args[0].contains("\\")) {
+										Chat.send(p, "COMMAND_INVALID_PARAMETER", args[0]);	
+									}
 								}
 							}
 						}

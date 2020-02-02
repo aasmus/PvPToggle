@@ -8,7 +8,7 @@ SETTINGS:
 ##Show PVP on particle effects
   PARTICLES: true
 ##SHOW PVP on red nametag
-  NAMETAG: true
+  NAMETAG: false
 ## Worlds to disable PvP toggling in (i.e. will always use the world's settings)
   BLOCKED_WORLDS: []
 ##<pvpstate> goes in place of a player's current pvp state
