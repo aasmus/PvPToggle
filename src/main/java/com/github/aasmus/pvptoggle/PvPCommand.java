@@ -1,5 +1,6 @@
 package com.github.aasmus.pvptoggle;
 
+import com.github.aasmus.pvptoggle.events.PVPToggleEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,6 +33,7 @@ public class PvPCommand implements CommandExecutor {
 						} else if(args[0].equals("toggle")) {
 							if(current == true) {
 							    if (Util.setPlayerState(other, false, console)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, true));
                                     Chat.send(other, "PVP_STATE_ENABLED");
                                     if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                                         Util.particleEffect(other.getPlayer());
@@ -42,11 +44,13 @@ public class PvPCommand implements CommandExecutor {
                                 }
 							} else {
 							    if (Util.setPlayerState(other, true, console)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, false));
                                     Chat.send(other, "PVP_STATE_DISABLED");
                                 }
 							}
 						} else if(args[0].equalsIgnoreCase("on")) {
 						    if (Util.setPlayerState(other, false, console)) {
+								Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, true));
                                 Chat.send(other, "PVP_STATE_ENABLED");
                                 if (current == true) {
                                 	if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
@@ -59,6 +63,7 @@ public class PvPCommand implements CommandExecutor {
                             }
 						} else if(args[0].equalsIgnoreCase("off")) {
 						    if (Util.setPlayerState(other, true, console)) {
+								Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, false));
                                 Chat.send(other, "PVP_STATE_DISABLED");
                     			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
                     				Util.ChangeNametag(other.getPlayer(), "reset");
@@ -96,6 +101,7 @@ public class PvPCommand implements CommandExecutor {
 								if(current == true) {
 									Util.setCooldownTime(p);
 									if (Util.setPlayerState(p, false, p)) {
+										Bukkit.getPluginManager().callEvent(new PVPToggleEvent(p, true));
                                         Chat.send(p, "PVP_STATE_ENABLED");
                                         if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                                             Util.particleEffect(p.getPlayer());
@@ -105,12 +111,14 @@ public class PvPCommand implements CommandExecutor {
                                     }
 								} else {
 								    if (Util.setPlayerState(p, true, p)) {
+										Bukkit.getPluginManager().callEvent(new PVPToggleEvent(p, false));
                                         Chat.send(p, "PVP_STATE_DISABLED");
                                     }
 								}
 							} else if(args[0].equalsIgnoreCase("on")) {
 								Util.setCooldownTime(p);
 								if (Util.setPlayerState(p, false, p)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(p, true));
                                     Chat.send(p, "PVP_STATE_ENABLED");
                                     if (current == true) {
                                     	if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
@@ -123,6 +131,7 @@ public class PvPCommand implements CommandExecutor {
                                 }
 							} else if(args[0].equalsIgnoreCase("off")) {
 							    if (Util.setPlayerState(p, true, p)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(p, false));
                                     Chat.send(p, "PVP_STATE_DISABLED");
                         			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
                         				Util.ChangeNametag(p.getPlayer(), "reset");
@@ -158,6 +167,7 @@ public class PvPCommand implements CommandExecutor {
 							if(args[0].equals("toggle")) {
 								if(current == true) {
 								    if (Util.setPlayerState(other, false, sender)) {
+										Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, true));
                                         Chat.send(other, "PVP_STATE_ENABLED");
                                         if (PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                                             Util.particleEffect(other.getPlayer());
@@ -168,11 +178,13 @@ public class PvPCommand implements CommandExecutor {
                                     }
 								} else {
 								    if (Util.setPlayerState(other, true, sender)) {
+										Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, false));
                                         Chat.send(other, "PVP_STATE_DISABLED");
                                     }
 								}
 							} else if(args[0].equalsIgnoreCase("on")) {
 							    if (Util.setPlayerState(other, false, sender)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, true));
                                     if (current == true) {
                                     	if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.PARTICLES")) {
                                             Util.particleEffect(other.getPlayer());	
@@ -185,6 +197,7 @@ public class PvPCommand implements CommandExecutor {
                                 }
 							} else if(args[0].equalsIgnoreCase("off")) {
 							    if (Util.setPlayerState(other, true, sender)) {
+									Bukkit.getPluginManager().callEvent(new PVPToggleEvent(other, false));
                                     Chat.send(other, "PVP_STATE_DISABLED");
                         			if(PvPToggle.instance.getConfig().getBoolean("SETTINGS.NAMETAG")) {
                         				Util.ChangeNametag(other.getPlayer(), "reset");
