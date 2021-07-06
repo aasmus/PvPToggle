@@ -33,3 +33,5 @@ MESSAGES:
   PVP_WORLD_CHANGE_REQUIRED: '&aYour pvp has been enabled because the world you enter requires pvp.'
   PVP_WORLD_CANNOT_CHANGE_SELF: '&cYou cannot change pvp state in this world.'
   PVP_WORLD_CANNOT_CHANGE_OTHERS: '&cYou cannot change pvp state in that world.'
+  PLACEHOLDER_OFF: '&aOff'
+  PLACEHOLDER_ON: '&cOn'
