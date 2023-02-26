@@ -26,6 +26,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>nametagedit-repo</id>
+            <url>http://ci.nametagedit.com/plugin/repository/everything/</url>
+        </repository>
     </repositories>
 
     <dependencies>
